@@ -1,23 +1,54 @@
 import firebase from "firebase";
+import { Axios } from "../../../../api/axios";
+import { useHistory } from 'react-router-dom';
+
 //--------------------------------------------------------
 function LoginForm({ auth }) {
+  const history = useHistory();
+  //---------------------------------
+  const sendInfoUser2Server = (user) => {
+    const userInfo = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+    };
+    console.log(userInfo);
+    Axios.post("/user/rigister", userInfo)
+      .then((res) => {
+        if (res) {
+          //console.log('saved user', res);
+        }
+        else {
+          alert(res.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  //------------Login with email password----------------------
   async function authenticateUser(e) {
     e.preventDefault();
     const email = e.target.querySelector("#email").value;
     const password = e.target.querySelector("#password").value;
     try {
-      const user = await auth.signInWithEmailAndPassword(email, password);
-      console.log(user);
-    } catch (err) {
-      console.log(err);
+      //const user = 
+      await auth.signInWithEmailAndPassword(email, password);
+      //console.log(user);
+      history.push('/');
+    } catch (error) {
+      alert(error.message);
     }
   }
+  //------------Sign with google-------------------------
   const googleProvider = new firebase.auth.GoogleAuthProvider()
   const signInWithGoogle = () => {
     auth.signInWithPopup(googleProvider).then((res) => {
-      console.log(res.user)
+      //console.log(res.user)
+      sendInfoUser2Server(res.user);
+      history.push('/');
     }).catch((error) => {
-      console.log(error.message)
+      console.log(error.message);
     })
   }
   return (
@@ -49,8 +80,9 @@ function LoginForm({ auth }) {
               Forgot Your Password?
             </a> */}
               </div>
-              <button onClick={signInWithGoogle} className="mt-2 min-w-full align-middle bg-red-500 hover:bg-blue-600 text-center px-4 py-2 text-white text-sm font-semibold rounded-lg inline-block shadow-lg">Login with Google</button>
             </form>
+            {/* sign with 3th service */}
+            <button onClick={signInWithGoogle} className="mt-2 min-w-full align-middle bg-red-500 hover:bg-blue-600 text-center px-4 py-2 text-white text-sm font-semibold rounded-lg inline-block shadow-lg">Login with Google</button>
           </div>
         </div>
       </div>
