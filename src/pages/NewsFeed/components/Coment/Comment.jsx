@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-Navbar.propTypes = {
+Comment.propTypes = {
 
 };
 
-function Navbar(props) {
+function Comment(props) {
   return (
     <div>
 
@@ -13,4 +13,4 @@ function Navbar(props) {
   );
 }
 
-export default Navbar;
+export default Comment;

@@ -1,63 +1,71 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { Axios } from "../../../../api/axios";
 import { useHistory } from 'react-router-dom';
+import { auth } from "../../../../Auth/firebase";
 
 //--------------------------------------------------------
-function LoginForm({ auth }) {
+function RigisterForm() {
   const history = useHistory();
-  //---------------------------------
-  const sendInfoUser2Server = (user) => {
-    const userInfo = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-    };
-    console.log(userInfo);
-    Axios.post("/user/rigister", userInfo)
-      .then((res) => {
-        if (res) {
-          //console.log('saved user', res);
-        }
-        else {
-          alert(res.message);
-        }
+  //------------------------------------------------------
+  const sendUser2Server = (token) => {
+    if (token)
+      Axios.post("/user/register", {}, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  //------------Login with email password----------------------
-  async function authenticateUser(e) {
+        .then((res) => {
+          if (res) {
+            console.log('saved user', res);
+          }
+          else {
+            alert(res);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }
+
+
+  //------Register by email password
+  const authenticateUser = async (e) => {
     e.preventDefault();
     const email = e.target.querySelector("#email").value;
     const password = e.target.querySelector("#password").value;
-    try {
-      //const user = 
-      await auth.signInWithEmailAndPassword(email, password);
-      //console.log(user);
-      history.push('/');
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-  //------------Sign with google-------------------------
-  const googleProvider = new firebase.auth.GoogleAuthProvider()
-  const signInWithGoogle = () => {
-    auth.signInWithPopup(googleProvider).then((res) => {
-      //console.log(res.user)
-      sendInfoUser2Server(res.user);
-      history.push('/');
-    }).catch((error) => {
-      console.log(error.message);
+    //const user = 
+    await auth.createUserWithEmailAndPassword(email, password).then((data) => {
+      return data.user.getIdToken();
     })
+      .then((token) => {
+        history.push('/');
+        return sendUser2Server(token);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    //console.log(user.user);
+  }
+  //------Sign with google
+  const signInWithGoogle = async () => {
+    await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((data) => {
+      return data.user.getIdToken();
+    })
+      .then((token) => {
+        history.push('/');
+        return sendUser2Server(token);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
   return (
     <>
-      {/* form login */}
+      {/* form rigister */}
       <div className="max-w-md mx-auto">
         <div className="flex justify-center block lg:flex bg-white lg:shadow-lg rounded-lg">
           <div className="w-full px-6 py-16">
-            <div className="mb-4 font-light tracking-widest text-2xl">LOGIN</div>
+            <div className="mb-4 font-light tracking-widest text-2xl">REGISTER</div>
             <form onSubmit={authenticateUser}>
               <div className="mb-4">
                 <label htmlFor="email" className="block mb-2 text-sm text-gray-800">Email</label>
@@ -75,14 +83,14 @@ function LoginForm({ auth }) {
             <span className="ml-2">I want to remember you ?</span>
           </label> */}
               <div className="block md:flex items-center justify-center">
-                <button type="submit" className="min-w-full align-middle bg-blue-500 hover:bg-blue-600 text-center px-4 py-2 text-white text-sm font-semibold rounded-lg inline-block shadow-lg">LOGIN</button>
+                <button type="submit" className="min-w-full align-middle bg-blue-500 hover:bg-blue-600 text-center px-4 py-2 text-white text-sm font-semibold rounded-lg inline-block shadow-lg">RIGISTER</button>
                 {/* <a className="text-gray-600 hover:text-gray-700 no-underline block mt-3" href="/password/reset">
               Forgot Your Password?
             </a> */}
               </div>
             </form>
-            {/* sign with 3th service */}
-            <button onClick={signInWithGoogle} className="mt-2 min-w-full align-middle bg-red-500 hover:bg-blue-600 text-center px-4 py-2 text-white text-sm font-semibold rounded-lg inline-block shadow-lg">Login with Google</button>
+            <hr />
+            <button onClick={signInWithGoogle} className="mt-2 min-w-full align-middle bg-red-500 hover:bg-red-600 text-center px-4 py-2 text-white text-sm font-semibold rounded-lg inline-block shadow-lg">Sign with Google</button>
           </div>
         </div>
       </div>
@@ -90,4 +98,4 @@ function LoginForm({ auth }) {
   );
 }
 
-export default LoginForm;
+export default RigisterForm;

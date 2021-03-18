@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, Route, Switch } from "react-router-dom";
-import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
+import BtnRegisterLogin from "../../components/Navbar/BtnRegisterLogin";
+import { auth } from "../../Auth/firebase";
+import { useHistory } from 'react-router-dom';
 
-Home.propTypes = {};
-
-export default function Home({ auth }) {
-  const [user, setUser] = useState(null);
+export default function HomePage() {
+  const [user, setUser] = useState(true);
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
-        console.log(user.photoURL);
-      }
+      } else setUser(false);
     })
   });
+  const history = useHistory();
+  const searchHandler = (e) => {
+    e.preventDefault();
+    const content = document.querySelector("#searchContent").value;
+    if (content) history.push(`/search?q=${content}`);
+  }
 
   return (
     <div>
@@ -22,36 +27,25 @@ export default function Home({ auth }) {
         {/* header */}
         <div className="flex justify-between text-sm text-gray-700">
           <div className="flex items-center">
-            <a className="block p-3">About</a>
-            <a className="block p-3">DSC - HCMUIT</a>
+            {/* <p className="block p-3">About</p>
+            <p className="block p-3">DSC - HCMUIT</p> */}
           </div>
           <div className="flex items-center">
             {!user &&
-              <>
-                <p className="block">
-                  <NavLink to={`user/register`} activeClassName="active">
-                    Rigister
-                  </NavLink>
-                </p>
-                <p className="block p-3">
-                  <NavLink to={`user/login`} activeClassName="active-menu" exact>
-                    Login
-                  </NavLink>
-                </p>
-              </>
+              <BtnRegisterLogin match_path={"user"} />
             }
             {user &&
               <>
                 <p className="block">
                   <NavLink to="user" activeClassName="active-menu" exact>
-                    <p className="block">{user.displayName || user.email}</p>
+                    <p className="block">{user?.displayName || user?.email}</p>
 
                   </NavLink>
                 </p>
                 <p className="block">
                   <img alt=""
-                    class="rounded-full block py-3 px-3"
-                    src={user.photoURL || null} width="62" height="62"
+                    className="rounded-full block py-3 px-3"
+                    src={user?.photoURL || null} width="62" height="62"
                   />
                 </p>
               </>
@@ -67,11 +61,11 @@ export default function Home({ auth }) {
             />
             <div className="flex border border-gray-200 rounded-full p-4 shadow text-xl">
               <div>🔎</div>
-              <input type="text" className="w-full outline-none px-3" />
+              <input type="text" id="searchContent" className="w-full outline-none px-3" />
               {/* <div>🎤</div> */}
             </div>
             <div className="mt-8 text-center">
-              <button className="mr-3 bg-gray-200 border border-gray-300 py-3 px-4 rounded hover:bg-gray-400 hover:border-gray-500">
+              <button onClick={searchHandler} className="mr-3 bg-gray-200 border border-gray-300 py-3 px-4 rounded hover:bg-gray-400 hover:border-gray-500">
                 Frientor!
               </button>
               <button className="bg-gray-200 border border-gray-300 py-3 px-4 rounded hover:bg-gray-400 hover:border-gray-500">

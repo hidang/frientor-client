@@ -1,7 +1,7 @@
-import { auth } from "./Auth/firebase";
-import UserFeature from "./features/User";
-import Home from "./pages/Home";
-import { NavLink, Route, Switch } from "react-router-dom";
+import UserPage from "./pages/User";
+import HomePage from "./pages/Home";
+import NewsFeedPage from "./pages/NewsFeed";
+import { Route, Switch } from "react-router-dom";
 
 //--------------------------------------------------------
 function App() {
@@ -9,10 +9,13 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/" exact>
-          <Home auth={auth} />
+          <HomePage />
         </Route>
         <Route path="/user">
-          <UserFeature auth={auth} />
+          <UserPage />
+        </Route>
+        <Route path="/search" exact>
+          <NewsFeedPage />
         </Route>
       </Switch>
     </div>

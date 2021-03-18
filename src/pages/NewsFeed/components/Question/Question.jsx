@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-NewsFeed.propTypes = {
+Question.propTypes = {
 
 };
 
-function NewsFeed(props) {
+function Question(props) {
   return (
     <div>
 
@@ -13,4 +13,4 @@ function NewsFeed(props) {
   );
 }
 
-export default NewsFeed;
+export default Question;
