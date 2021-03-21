@@ -1,29 +1,112 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Post from './components/Post/Post';
+import React, { useState, useEffect } from 'react';
+import QuestionItem from './components/QuestionItem/QuestionItem';
 import { useLocation } from 'react-router-dom';
-
-NewsFeedPage.propTypes = {
-
-};
-
+import { auth } from './../../Auth/firebase';
+import { NavLink } from "react-router-dom";
+import { Axios } from './../../api/axios';
+import BtnRegisterLogin from "../../components/Navbar/BtnRegisterLogin";
 function NewsFeedPage(props) {
+  const [refresh, setRefresh] = useState({});
+  const [questionItems, setQuestionItems] = useState([]);
+  //------------------------------------------------------------
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const q = query.get('q');
+  //------------------------------------------------------------
+  const [user, setUser] = useState(true);
+  //------------------------------------------------------------
+  //check user login?
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else setUser(false);
+    })
+  });
+  //------------------------------------------------------------
+  const handleQuest = async (e) => {
+    if (!user) alert("Bạn chưa login");
+    else {
+      e.preventDefault();
+      const content = document.querySelector("#inputQuestion").value;
+      const token = await user.getIdToken();
+      Axios.post(
+        "/question",
+        {
+          content: content,
+          date: new Date(),
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      ).then(() => {
+        document.querySelector("#inputQuestion").value = "";
+        setRefresh({});
+      });
+    };
+  }
+  //-----------------------------------------------------------
+  useEffect(() => {
+    Axios.get("/question")
+      .then((res) => {
+        let _questionItems = res.data;
+        setQuestionItems(_questionItems);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [refresh]);
+
   return (
     <div>
-      <div className="bg-gray-100 overflow-x-hidden">
+      {/* navbar */}
+      <div className="flex justify-between text-sm text-gray-700">
+        <div className="flex items-center">
+          {/* <p className="block p-3">About</p>
+            <p className="block p-3">DSC - HCMUIT</p> */}
+        </div>
+        <div className="flex items-center">
+          {!user &&
+            <BtnRegisterLogin match_path={"user"} />
+          }
+          {user &&
+            <>
+              <p className="block">
+                <NavLink to="user" activeClassName="active-menu" exact>
+                  <p className="block">{user?.displayName || user?.email}</p>
+
+                </NavLink>
+              </p>
+              <p className="block">
+                <img alt=""
+                  className="rounded-full block py-3 px-3"
+                  src={user?.photoURL || null} width="62" height="62"
+                />
+              </p>
+            </>
+          }
+        </div>
+      </div>
+
+
+
+
+      {/* body */}
+      <div className="overflow-x-hidden">
 
         <div className="px-6 py-8">
           <div className="flex justify-between container mx-auto">
             <div className="w-full lg:w-8/12">
-              <textarea id="inputQuestion" value={q} className="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline" />
-              <button className="min-w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+              <textarea id="inputQuestion" defaultValue={q} className="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline"></textarea>
+              <button onClick={handleQuest} className="min-w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                 Quest
               </button>
               <hr />
-              <Post />
+              {questionItems.map((questionItem) => (
+                <QuestionItem key={questionItem._id} questionItem={questionItem} />
+              ))}
 
               <div className="mt-8">
                 <div className="flex">

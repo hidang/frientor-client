@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { Route, Switch, NavLink, useRouteMatch } from "react-router-dom";
 import LoginForm from "./components/Login/LoginForm";
 import RigisterForm from "./components/Register/RigisterForm";
 import { auth } from "../../Auth/firebase";
-import Navbar from "./components/Navbar/Navbar";
-
+import BtnRegisterLogin from "../../components/Navbar/BtnRegisterLogin";
 function UserPage() {
   const [user, setUser] = useState(null);
   //const [token, setToken] = useState('');
@@ -18,13 +17,34 @@ function UserPage() {
   });
   const logOut = () => {
     auth.signOut().then((result) => {
+      console.log(result, user)
       setUser(null);
     })
   }
   const match = useRouteMatch();//lấy path theo thằng cha
   return (
     <>
-      <Navbar user logOut={logOut} match />
+      <>
+        {!user &&
+          <div className="flex justify-between text-sm text-gray-700">
+            <div className="flex items-center">
+              <p className="block p-3">
+                <NavLink to="/">
+                  <button>Home</button>
+                </NavLink>
+              </p>
+            </div>
+            <BtnRegisterLogin match_path={`${match.path}`} />
+          </div>
+        }
+        {user &&
+          <>
+            Bạn đã đăng nhập<br />
+          ✅ Xin chào {user.email}<br />
+            <button onClick={logOut} color="yellow">👈 Log out </button>
+          </>
+        }
+      </>
       <Switch>
         <Route path={`${match.path}/login`} exact>
           {!user && <LoginForm />}

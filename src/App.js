@@ -1,8 +1,10 @@
+import { Route, Switch } from "react-router-dom";
+
 import UserPage from "./pages/User";
 import HomePage from "./pages/Home";
 import NewsFeedPage from "./pages/NewsFeed";
-import { Route, Switch } from "react-router-dom";
-
+import NotFound from "./components/NotFound";
+import QuestionPage from "./pages/Question";
 //--------------------------------------------------------
 function App() {
   return (
@@ -16,6 +18,12 @@ function App() {
         </Route>
         <Route path="/search" exact>
           <NewsFeedPage />
+        </Route>
+        <Route path="/question" exact>
+          <QuestionPage />
+        </Route>
+        <Route>
+          <NotFound />
         </Route>
       </Switch>
     </div>
