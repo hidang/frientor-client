@@ -98,36 +98,6 @@ function NewsFeedPage(props) {
 
         <div className="px-6 py-8">
           <div className="flex justify-between container mx-auto">
-            <div className="w-full lg:w-8/12">
-              <textarea id="inputQuestion" defaultValue={q} className="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline"></textarea>
-              <button onClick={handleQuest} className="min-w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                Quest
-              </button>
-              <hr />
-              {questionItems.map((questionItem) => (
-                <QuestionItem key={questionItem._id} questionItem={questionItem} />
-              ))}
-
-              <div className="mt-8">
-                <div className="flex">
-                  <p href="#" className="mx-1 px-3 py-2 bg-white text-gray-500 font-medium rounded-md cursor-not-allowed">
-                    previous
-                  </p>
-                  <p href="#" className="mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
-                    1
-                  </p>
-                  <p href="#" className="mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
-                    2
-                  </p>
-                  <p href="#" className="mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
-                    3
-                  </p>
-                  <p href="#" className="mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
-                    Next
-                  </p>
-                </div>
-              </div>
-            </div>
             {/*  */}
             <div className="-mx-8 w-4/12 hidden lg:block">
               <div className="px-8">
@@ -183,6 +153,37 @@ function NewsFeedPage(props) {
                   <div className="flex justify-between items-center mt-4">
                     <div className="flex items-center"><img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=731&q=80" alt="avatar" className="w-8 h-8 object-cover rounded-full" /><a href="#" className="text-gray-700 text-sm mx-3 hover:underline">Alex John</a></div><span className="font-light text-sm text-gray-600">Jun 1, 2020</span>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full lg:w-8/12">
+              <textarea id="inputQuestion" defaultValue={q} className="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline"></textarea>
+              <button onClick={handleQuest} className="min-w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                Quest
+              </button>
+              <hr />
+              {questionItems.map((questionItem) => (
+                <QuestionItem key={questionItem._id} questionItem={questionItem} />
+              ))}
+
+              <div className="mt-8">
+                <div className="flex">
+                  <p href="#" className="mx-1 px-3 py-2 bg-white text-gray-500 font-medium rounded-md cursor-not-allowed">
+                    previous
+                  </p>
+                  <p href="#" className="mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
+                    1
+                  </p>
+                  <p href="#" className="mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
+                    2
+                  </p>
+                  <p href="#" className="mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
+                    3
+                  </p>
+                  <p href="#" className="mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
+                    Next
+                  </p>
                 </div>
               </div>
             </div>
