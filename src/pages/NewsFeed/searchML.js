@@ -80,7 +80,7 @@ export default function sortSearchResponse(questions, search) {
     _questions.push(new object(question?._id, question?.content))
   );
   const result = recommendQues(_questions, search);
-  console.log(result);
+  //console.log(result);
   return result;
 }
 //༼ つ ◕3◕ ༽つ Trí Dũng ☜(ﾟヮﾟ☜)
