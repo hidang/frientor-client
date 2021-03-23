@@ -16,17 +16,18 @@ function RepComment({ idComment }) {
   //check new comment
   useEffect(() => {
     const interval = setInterval(() => {
+      console.log(idComment)
       if (idComment)
         Axios.get(`/question/repcomment/${idComment}`)
           .then((res) => {
             const _repcomments = res.data;
-            if (_repcomments?.length !== repComments)
+            if (_repcomments?.length !== repComments.length)
               setRepComments(res.data);
           })
           .catch((err) => {
             console.log(err);
           })
-    }, 2050);
+    }, 1600);
     return () => clearInterval(interval);
   });
 
@@ -35,7 +36,7 @@ function RepComment({ idComment }) {
       {
         repComments?.map((repComment) => (
           <>
-            <RepCommentItem repComment={repComment} />
+            <RepCommentItem key={repComment._id} repComment={repComment} />
             <hr />
           </>
         ))

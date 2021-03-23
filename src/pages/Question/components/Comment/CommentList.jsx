@@ -13,30 +13,19 @@ function CommentList({ questionId }) {
         console.log(err);
       });
   });
-  const [user, setUser] = useState(null);
-  //------------------------------------------------------------
-  const [userLogin, setUserLogin] = useState(true);
-  //check user login?
-  useEffect(() => {
-    auth.onAuthStateChanged((userLogin) => {
-      if (userLogin) {
-        setUserLogin(userLogin);
-      } else setUserLogin(false);
-    })
-  });
   //-------------check new comment?------------------------------------
   useEffect(() => {
     const interval = setInterval(() => {
       Axios.get(`/question/comment/${questionId}`)
         .then((res) => {
           const _commentItem = res.data;
-          if (_commentItem?.length !== commentItems)
+          if (_commentItem?.length !== commentItems.length)
             setCommentItems(res.data);
         })
         .catch((err) => {
           console.log(err);
         });
-    }, 1900);
+    }, 1500);
     return () => clearInterval(interval);
   });
   //get question
