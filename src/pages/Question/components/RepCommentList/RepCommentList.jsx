@@ -16,7 +16,6 @@ function RepComment({ idComment }) {
   //check new comment
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log(idComment)
       if (idComment)
         Axios.get(`/question/repcomment/${idComment}`)
           .then((res) => {

@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import QuestionItem from './components/QuestionItem/QuestionItem';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { auth } from './../../Auth/firebase';
 import { NavLink } from "react-router-dom";
 import { Axios } from './../../api/axios';
 import BtnRegisterLogin from "../../components/Navbar/BtnRegisterLogin";
+import sortSearchResponse from './searchML';
+
 function NewsFeedPage(props) {
   const [refresh, setRefresh] = useState({});
   const [questionItems, setQuestionItems] = useState(() => {
     Axios.get("/question")
       .then((res) => {
         let _questionItems = res.data;
-        setQuestionItems(_questionItems);
+        if (_questionItems) {
+          const _idQuestionSorteds = sortSearchResponse(_questionItems, q);
+          const kq = [];
+          _idQuestionSorteds.map((_questionSorted) => (
+            kq.push(_questionItems.filter(_questionItem => _questionItem._id === _questionSorted.index))
+          ))
+          setQuestionItems(kq);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -56,16 +65,26 @@ function NewsFeedPage(props) {
       });
     };
   }
+  const history = useHistory();
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const content = document.querySelector("#inputQuestion").value;
+    if (content) history.push(`/search?q=${content}`);
+  }
   //--------------Check Question-------------------------------
   //----------------------------
   useEffect(() => {
     const interval = setInterval(() => {
       Axios.get("/question")
         .then((res) => {
-          const _questionItems = res.data;
-          if (_questionItems?.length !== questionItems?.length) {
-            console.log('just one')
-            setQuestionItems(_questionItems);
+          let _questionItems = res.data;
+          if (_questionItems) {
+            const _idQuestionSorteds = sortSearchResponse(_questionItems, q);
+            const kq = [];
+            _idQuestionSorteds.map((_questionSorted) => (
+              kq.push(_questionItems.filter(_questionItem => _questionItem._id === _questionSorted.index))
+            ))
+            setQuestionItems(kq);
           }
         })
         .catch((err) => {
@@ -74,17 +93,6 @@ function NewsFeedPage(props) {
     }, 2000);
     return () => clearInterval(interval);
   });
-  //-----------------------------------------------------------
-  // useEffect(() => {
-  //   Axios.get("/question")
-  //     .then((res) => {
-  //       let _questionItems = res.data;
-  //       setQuestionItems(_questionItems);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [refresh]);
 
   return (
     <div>
@@ -186,12 +194,15 @@ function NewsFeedPage(props) {
 
             <div className="w-full lg:w-8/12">
               <textarea id="inputQuestion" defaultValue={q} className="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline"></textarea>
-              <button onClick={handleQuest} className="min-w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                Quest
+              <button onClick={handleSearch} className="mb-1 mr-2 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                Search
+              </button>
+              <button onClick={handleQuest} className=" bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 border-b-4 border-yellow-700 hover:border-yellow-500 rounded">
+                Post Question
               </button>
               <hr />
               {questionItems?.map((questionItem) => (
-                <QuestionItem key={questionItem._id} questionItem={questionItem} />
+                <QuestionItem key={questionItem[0]._id} questionItem={questionItem[0]} />
               ))}
 
               <div className="mt-8">
