@@ -3,6 +3,7 @@ import { auth } from './../../../../Auth/firebase';
 import { Axios } from './../../../../api/axios';
 
 function CommentBox({ questionId, commentId }) {
+  const _idOnly = Math.floor(Math.random() * Math.floor(1000));
   const [user, setUser] = useState(true);
   //------------------------------------------------------------
   //check user login?
@@ -18,13 +19,12 @@ function CommentBox({ questionId, commentId }) {
     if (!user) alert("Bạn chưa login");
     else {
       e.preventDefault();
-      const content = document.querySelector("#inputComment").value;
+      const content = document.querySelector(`#inputComment${_idOnly}`).value;
       const token = await user.getIdToken();
       Axios.post(
-        `/question/${questionId ? "comment" : "recomment"}/${questionId || commentId}`,
+        `/question/${questionId ? "comment" : "repcomment"}/${questionId || commentId}`,
         {
           content: content,
-          questionId: questionId,
           date: new Date(),
         },
         {
@@ -33,7 +33,7 @@ function CommentBox({ questionId, commentId }) {
           },
         }
       ).then(() => {
-        document.querySelector("#inputComment").value = "";
+        document.querySelector(`#inputComment${_idOnly}`).value = "";
       });
     };
   }
@@ -45,7 +45,7 @@ function CommentBox({ questionId, commentId }) {
           <div className="flex flex-wrap -mx-3 mb-6">
             <h2 className="px-4 pt-3 pb-2 text-gray-800 text-lg">Add a new comment</h2>
             <div className="w-full md:w-full px-3 mb-2 mt-2">
-              <textarea id="inputComment" className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="body" placeholder="Type Your Comment" required defaultValue={""} />
+              <textarea id={`inputComment${_idOnly}`} className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="body" placeholder="Type Your Comment" required defaultValue={""} />
             </div>
             <div className="w-full md:w-full flex items-start md:w-full px-3">
               <div className="flex items-start w-1/2 text-gray-700 px-2 mr-auto">

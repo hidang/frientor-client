@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CommentBox from '../CommentBox/CommentBox';
+import RepComment from '../RepCommentList/RepCommentList';
 import { Axios } from './../../../../api/axios';
 
 function CommentItem({ commentItem }) {
@@ -51,10 +52,12 @@ function CommentItem({ commentItem }) {
               <div className="flex items-start w-1/2 text-gray-700 px-2 mr-auto">
                 <p href="#" className="hover:underline text-xs pt-px"> {user?.name} {converDate(commentItem?.date)}</p>
               </div>
+
               <div className="-mr-1">
                 <input type="button" onClick={() => { setShowBox(!showBox) }} className="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" defaultValue="Reply" />
               </div>
             </div>
+            <RepComment idComment={commentItem?.repcomment.length > 0 ? commentItem?._id : null} />
             {/* comment form */}
             {showBox && <CommentBox questionId={false} commentId={commentItem?._id} />}
           </div>

@@ -163,7 +163,7 @@ function NewsFeedPage(props) {
                 Quest
               </button>
               <hr />
-              {questionItems.map((questionItem) => (
+              {questionItems?.map((questionItem) => (
                 <QuestionItem key={questionItem._id} questionItem={questionItem} />
               ))}
 
