@@ -33,7 +33,8 @@ function CommentBox({ questionId, commentId }) {
           },
         }
       ).then(() => {
-        document.querySelector(`#inputComment${_idOnly}`).value = "";
+        const _inputTextArea = document.querySelector(`#inputComment${_idOnly}`);
+        if (_inputTextArea) _inputTextArea.value = "";
       });
     };
   }

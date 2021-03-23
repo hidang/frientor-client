@@ -7,7 +7,16 @@ import { Axios } from './../../api/axios';
 import BtnRegisterLogin from "../../components/Navbar/BtnRegisterLogin";
 function NewsFeedPage(props) {
   const [refresh, setRefresh] = useState({});
-  const [questionItems, setQuestionItems] = useState([]);
+  const [questionItems, setQuestionItems] = useState(() => {
+    Axios.get("/question")
+      .then((res) => {
+        let _questionItems = res.data;
+        setQuestionItems(_questionItems);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
   //------------------------------------------------------------
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -47,17 +56,35 @@ function NewsFeedPage(props) {
       });
     };
   }
-  //-----------------------------------------------------------
+  //--------------Check Question-------------------------------
+  //----------------------------
   useEffect(() => {
-    Axios.get("/question")
-      .then((res) => {
-        let _questionItems = res.data;
-        setQuestionItems(_questionItems);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [refresh]);
+    const interval = setInterval(() => {
+      Axios.get("/question")
+        .then((res) => {
+          const _questionItems = res.data;
+          if (_questionItems?.length !== questionItems?.length) {
+            console.log('just one')
+            setQuestionItems(_questionItems);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 2000);
+    return () => clearInterval(interval);
+  });
+  //-----------------------------------------------------------
+  // useEffect(() => {
+  //   Axios.get("/question")
+  //     .then((res) => {
+  //       let _questionItems = res.data;
+  //       setQuestionItems(_questionItems);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [refresh]);
 
   return (
     <div>

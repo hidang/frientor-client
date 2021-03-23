@@ -63,8 +63,6 @@ function CommentItem({ commentItem }) {
           </div>
         </form>
       </div>
-
-
     </>
   );
 }

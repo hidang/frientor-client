@@ -15,7 +15,7 @@ function RepCommentItem({ repComment }) {
   })
   return (
     <>
-      <p className="ml-10 text-xs">{repComment?.content} - {user?.name}</p>
+      <p className="ml-10 text-xs mr-40">{repComment?.content} - {user?.name}</p>
     </>
   );
 }

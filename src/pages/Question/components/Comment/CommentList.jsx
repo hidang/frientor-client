@@ -4,7 +4,15 @@ import { Axios } from '../../../../api/axios';
 import CommentItem from './../CommentItem/CommentItem';
 function CommentList({ questionId }) {
   const [refresh, setRefresh] = useState({});
-  const [commentItems, setCommentItems] = useState([]);
+  const [commentItems, setCommentItems] = useState(() => {
+    Axios.get(`/question/comment/${questionId}`)
+      .then((res) => {
+        setCommentItems(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
   const [user, setUser] = useState(null);
   //------------------------------------------------------------
   const [userLogin, setUserLogin] = useState(true);
@@ -16,20 +24,34 @@ function CommentList({ questionId }) {
       } else setUserLogin(false);
     })
   });
-  //-----------------------------------------------------------
-  //get question
+  //-------------check new comment?------------------------------------
   useEffect(() => {
-    Axios.get(`/question/comment/${questionId}`)
-      .then((res) => {
-        setCommentItems(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [questionId, refresh]);
+    const interval = setInterval(() => {
+      Axios.get(`/question/comment/${questionId}`)
+        .then((res) => {
+          const _commentItem = res.data;
+          if (_commentItem?.length !== commentItems)
+            setCommentItems(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 1900);
+    return () => clearInterval(interval);
+  });
+  //get question
+  // useEffect(() => {
+  //   Axios.get(`/question/comment/${questionId}`)
+  //     .then((res) => {
+  //       setCommentItems(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [questionId, refresh]);
   return (
     <>
-      {commentItems.map((commentItem) => (
+      {commentItems?.map((commentItem) => (
         <CommentItem key={commentItem._id} commentItem={commentItem} />
       ))}
     </>
