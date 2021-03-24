@@ -8,8 +8,15 @@ import BtnRegisterLogin from "../../components/Navbar/BtnRegisterLogin";
 import sortSearchResponse from './searchML';
 
 function NewsFeedPage(props) {
+  //----------get Question by URL---------------------------------------
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const q = query.get('q');
+  //------------------------------------------------------------
   const [refresh, setRefresh] = useState({});
-  const [questionItems, setQuestionItems] = useState(() => {
+  const [questionItems, setQuestionItems] = useState();
+  //get question
+  useEffect(() => {
     Axios.get("/question")
       .then((res) => {
         let _questionItems = res.data;
@@ -25,12 +32,8 @@ function NewsFeedPage(props) {
       .catch((err) => {
         console.log(err);
       });
-  });
-  //------------------------------------------------------------
-  const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const q = query.get('q');
-  //------------------------------------------------------------
+  }, [q, refresh]);
+
   const [user, setUser] = useState(true);
   //------------------------------------------------------------
   //check user login?
@@ -71,8 +74,7 @@ function NewsFeedPage(props) {
     const content = document.querySelector("#inputQuestion").value;
     if (content) history.push(`/search?q=${content}`);
   }
-  //--------------Check Question-------------------------------
-  //----------------------------
+  //--------------Check new Question-------------------------------
   useEffect(() => {
     const interval = setInterval(() => {
       Axios.get("/question")
@@ -136,7 +138,7 @@ function NewsFeedPage(props) {
             {/*  */}
             <div className="-mx-8 w-4/12 hidden lg:block">
               <div className="px-8">
-                <h1 className="mb-4 text-xl font-bold text-gray-700">Authors</h1>
+                <h1 className="mb-4 text-xl font-bold text-gray-700">Hot Topic</h1>
                 <div className="flex flex-col bg-white max-w-sm px-6 py-4 mx-auto rounded-lg shadow-md">
                   <ul className="-mx-4">
                     <li className="flex items-center"><img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=731&q=80" alt="avatar" className="w-10 h-10 object-cover rounded-full mx-4" />

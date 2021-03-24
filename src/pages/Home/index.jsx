@@ -71,11 +71,11 @@ export default function HomePage() {
             </div>
             <div className="mt-8 text-center">
               <button onClick={handleSearch} className="mr-3 bg-gray-200 border border-gray-300 py-3 px-4 rounded hover:bg-gray-400 hover:border-gray-500">
-                Frientor!
+                Go!
               </button>
-              <button className="bg-gray-200 border border-gray-300 py-3 px-4 rounded hover:bg-gray-400 hover:border-gray-500">
+              {/* <button className="bg-gray-200 border border-gray-300 py-3 px-4 rounded hover:bg-gray-400 hover:border-gray-500">
                 I'm Feeling Lucky
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

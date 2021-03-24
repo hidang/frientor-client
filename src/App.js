@@ -5,6 +5,7 @@ import HomePage from "./pages/Home";
 import NewsFeedPage from "./pages/NewsFeed";
 import NotFound from "./components/NotFound";
 import QuestionPage from "./pages/Question";
+import ChatPage from "./pages/Chat";
 //--------------------------------------------------------
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
         </Route>
         <Route path="/question" exact>
           <QuestionPage />
+        </Route>
+        <Route path="/chat" exact>
+          <ChatPage />
         </Route>
         <Route>
           <NotFound />

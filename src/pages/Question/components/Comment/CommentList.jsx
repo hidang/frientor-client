@@ -4,15 +4,18 @@ import { Axios } from '../../../../api/axios';
 import CommentItem from './../CommentItem/CommentItem';
 function CommentList({ questionId }) {
   const [refresh, setRefresh] = useState({});
-  const [commentItems, setCommentItems] = useState(() => {
-    Axios.get(`/question/comment/${questionId}`)
-      .then((res) => {
-        setCommentItems(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+  const [commentItems, setCommentItems] = useState();
+  //get Comment
+  useEffect(() => {
+    if (questionId)
+      Axios.get(`/question/comment/${questionId}`)
+        .then((res) => {
+          setCommentItems(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }, [questionId])
   //-------------check new comment?------------------------------------
   useEffect(() => {
     const interval = setInterval(() => {
