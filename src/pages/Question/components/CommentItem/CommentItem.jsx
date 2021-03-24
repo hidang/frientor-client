@@ -57,7 +57,7 @@ function CommentItem({ commentItem }) {
                 <input type="button" onClick={() => { setShowBox(!showBox) }} className="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" defaultValue="Reply" />
               </div>
             </div>
-            <RepComment idComment={commentItem?.repcomment.length > 0 ? commentItem?._id : null} />
+            <RepComment idComment={commentItem?._id || null} />
             {/* comment form */}
             {showBox && <CommentBox questionId={false} commentId={commentItem?._id} />}
           </div>
