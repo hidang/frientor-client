@@ -3,17 +3,16 @@ import { Axios } from '../../../api/axios';
 import BranchItem from './BranchItem';
 
 
-function Branch({ idComment }) {
+function Branch({ idComment, handleChithubEvent }) {
   const [repComments, setRepComments] = useState();
-  //get Comment
+  //get repComment
   useEffect(() => {
     if (idComment)
       Axios.get(`/question/repcomment/${idComment}`)
         .then((res) => {
           const _repcomments = res.data;
           if (_repcomments?.length !== repComments?.length)
-            console.log('dang dep trai')
-          setRepComments(res.data);
+            setRepComments(res.data);
         })
         .catch((err) => {
           console.log(err);
@@ -36,6 +35,10 @@ function Branch({ idComment }) {
     }, 2000);
     return () => clearInterval(interval);
   });
+  //-----------------------------------------------------------------
+  const _handleChithubEvent = () => {
+    handleChithubEvent();
+  }
   return (
     <>
       <div className="w-2/5 bg-gray-200 overflow-y-auto flex flex-col">
@@ -44,7 +47,7 @@ function Branch({ idComment }) {
           {
             repComments?.map((repComment) => (
               <>
-                <BranchItem key={repComment._id} repComment={repComment} />
+                <BranchItem key={repComment._id} idComment={idComment} repComment={repComment} triggerRefreshChat={_handleChithubEvent} />
               </>
             ))
           }

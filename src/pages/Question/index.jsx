@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { auth } from './../../Auth/firebase';
 import { Axios } from './../../api/axios';
 import { NavLink } from "react-router-dom";
@@ -72,6 +72,8 @@ function QuestionPage(props) {
 
     return day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds;
   }
+  //----------------------------------------------------------
+  const history = useHistory();
   return (
     <div>
       {/* navbar */}
@@ -126,11 +128,13 @@ function QuestionPage(props) {
               <img src={user?.photoURL || "https://i.pinimg.com/564x/ce/34/25/ce3425a53b03b8eecb176fcc0b4fd44e.jpg"} alt="avatar" className="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" />
               <h1 className="text-gray-700 font-bold hover:underline">{user?.name || user?.email}</h1>
             </p>
-            <input type="button" onClick={() => { setShowBox(!showBox) }} className="ml-2 bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" defaultValue="Reply" />
+            <input type="button" onClick={() => { setShowBox(!showBox) }} className="ml-2 bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" defaultValue="Add Idea" />
           </div>
           {showBox && <CommentBox questionId={questionItem?._id} commentId={false} />}
         </div>
-
+        <div className="mr-1">
+          <input onClick={() => { history.push(`/chat?idq=${questionItem?._id}`) }} type="button" className="bg-white text-gray-700 font-medium py-1 px-4 border border-green-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" defaultValue="Discussion" />
+        </div>
       </div>
       {/* CommentList */}
       <CommentList questionId={questionItem?._id} />

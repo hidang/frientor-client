@@ -33,9 +33,8 @@ function NewsFeedPage(props) {
         console.log(err);
       });
   }, [q, refresh]);
-
-  const [user, setUser] = useState(true);
   //------------------------------------------------------------
+  const [user, setUser] = useState(true);
   //check user login?
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -126,9 +125,6 @@ function NewsFeedPage(props) {
           }
         </div>
       </div>
-
-
-
 
       {/* body */}
       <div className="overflow-x-hidden">

@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
+import { useHistory, useLocation, useRouteMatch } from 'react-router';
 import Idea from './Idea/Idea';
 import { auth } from './../../Auth/firebase';
 import { Axios } from './../../api/axios';
 import Branch from './Branch/Branch';
+import Chithub from './Chithub/Chithub';
+import BtnRegisterLogin from '../../components/Navbar/BtnRegisterLogin';
+import { NavLink } from 'react-router-dom';
 
 function ChatPage(props) {
-  const [idComment, setIdComment] = useState(null);
-  const handleClickIdea = (_idComment) => {
-    if (_idComment !== idComment) setIdComment(_idComment);
-    //get repcomment
-    //get chat
-
-  };
-
+  const [refresh, setRefresh] = useState({});
   //------------------------------------------------------------
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const idq = query.get('idq');
+  //-----------------------------------------------------------
+  const [idComment, setIdComment] = useState(query.get('idcomment'));
+  const match = useRouteMatch();
+  const history = useHistory();
+  const handleClickIdea = (_idComment) => {
+    if (_idComment !== idComment) setIdComment(_idComment);
+    history.push(`${match.path}?idq=${idq}&idcomment=${_idComment}`);
+  };
   //------------------------------------------------------------
   const [questionItem, setQuestionItem] = useState([]);
   const [user, setUser] = useState(null);
@@ -53,8 +57,43 @@ function ChatPage(props) {
         console.log(err);
       });
   }, [idq, questionItem?.uid]);
+  //----------------------------------------------------------
+  const [chithub, setChithub] = useState(null);
+  const handleChithubEvent = () => {
+    setRefresh({});
+  }
   return (
     <>
+      {/* navbar */}
+      <div className="flex justify-between text-sm text-gray-700">
+        <div className="flex items-center">
+          {/* <p className="block p-3">About</p>
+            <p className="block p-3">DSC - HCMUIT</p> */}
+        </div>
+        <div className="flex items-center">
+          {!userLogin &&
+            <BtnRegisterLogin match_path={"user"} />
+          }
+          {userLogin &&
+            <>
+              <p className="block">
+                <NavLink to="user" activeClassName="active-menu" exact>
+                  <p className="block">{userLogin?.displayName || userLogin?.email}</p>
+                </NavLink>
+              </p>
+              <p className="block">
+                <img alt=""
+                  className="rounded-full block py-3 px-3"
+                  src={userLogin?.photoURL || null} width="62" height="62"
+                />
+              </p>
+            </>
+          }
+        </div>
+      </div>
+
+
+      {/* body */}
       <div className="flex flex-row h-screen bg-gray-100">
 
         <div className="w-64 flex-none bg-gray-100 p-4 flex flex-col space-y-4">
@@ -73,32 +112,7 @@ function ChatPage(props) {
               <center><p className="">Chithub</p></center>
             </div>
             <div className="flex-auto overflow-y-auto">
-              <a className="block border-b">
-                <div className="border-l-2 border-transparent hover:bg-gray-100 p-3 space-y-4">
-                  <div className="flex flex-row items-center space-x-2">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <strong className="flex-grow text-sm">Nikola Tesla</strong>
-                    <div className="text-sm text-gray-600">5hr</div>
-                  </div>
-                  <div className="flex flex-row items-center space-x-1">
-                    <svg className="flex-none w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <div className="flex-grow truncate text-xs">some message content whedkjwhed wkjehdkjweh dkjhwekjdhwekjhd </div>
-                  </div>
-                </div>
-              </a>
-              <a className="block border-b">
-                <div className="border-l-2 border-blue-500 bg-blue-100 p-3 space-y-4">
-                  <div className="flex flex-row items-center space-x-2">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <strong className="flex-grow text-sm">Nikola Tesla</strong>
-                    <div className="text-sm text-gray-600">5hr</div>
-                  </div>
-                  <div className="flex flex-row items-center space-x-1">
-                    <svg className="flex-none w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <div className="flex-grow truncate text-xs">some message content whedkjwhed wkjehdkjweh dkjhwekjdhwekjhd </div>
-                  </div>
-                </div>
-              </a>
+              <Chithub idComment={idComment} />
             </div>
           </div>
           {/*  */}
@@ -143,7 +157,7 @@ function ChatPage(props) {
             </div>
           </div>
           {/*  */}
-          <Branch idComment={idComment} />
+          <Branch idComment={idComment} handleChithubEvent={handleChithubEvent} />
         </div>
       </div>
 
