@@ -31,6 +31,9 @@ export default function HomePage() {
       <div>
         {/* navbar */}
         <div className="flex justify-between text-sm text-gray-700 font-bold">
+          <div>
+            <h2 className="text-gray-500 font-svn-inter text-2xl ml-4 cursor-pointer my-3 ml-20">HOME</h2>
+          </div>
           <div className="flex items-center">
             {/* <p className="block p-3">About</p>
             <p className="block p-3">DSC - HCMUIT</p> */}
@@ -58,14 +61,14 @@ export default function HomePage() {
           </div>
         </div>
         {/* main */}
-        <div className="flex justify-center pt-20">
+        <div className="flex justify-center pt-20 content-center my-10">
           <div>
             <img alt="frientor"
               className="w-2/3 ml-auto mr-auto mb-6 my-6 cursor-pointer"
               src={frientorPNG}
             />
             <div className="flex border border-gray-200 rounded-full p-4 shadow text-xl focus:outline-none">
-              <div>🔎</div>
+              <div></div>
               <input onKeyPress={handleKeypress.bind(this)} type="text" id="searchContent" className="w-full outline-none px-3 font-bold focus:outline-none" placeholder="What are you searching for?" />
               {/* <div>🎤</div> */}
             </div>

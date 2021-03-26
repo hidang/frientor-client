@@ -98,7 +98,7 @@ function NewsFeedPage(props) {
   return (
     <div>
       {/* navbar */}
-      <div className="flex justify-between text-sm text-gray-700">
+      <div className="flex justify-between text-sm text-gray-700 font-bold">
         <div>
           <h2 className="text-red-500 font-svn-inter font-bold text-6xl ml-4 cursor-pointer my-3 ml-20">Frientor</h2>
         </div>
@@ -215,7 +215,7 @@ function NewsFeedPage(props) {
                   <p href="#" className="mx-1 px-3 py-2 bg-white text-gray-500 font-medium rounded-md cursor-not-allowed">
                     previous
                   </p>
-                  <p href="#" className="mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
+                  <p href="#" className="font-bold mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
                     1
                   </p>
                   <p href="#" className="mx-1 px-3 py-2 bg-white text-gray-700 font-medium hover:bg-blue-500 hover:text-white rounded-md">
