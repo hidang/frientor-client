@@ -99,10 +99,14 @@ function NewsFeedPage(props) {
     <div>
       {/* navbar */}
       <div className="flex justify-between text-sm text-gray-700">
+        <div>
+          <h2 className="text-red-500 font-svn-inter font-bold text-6xl ml-4 cursor-pointer my-3 ml-20">Frientor</h2>
+        </div>
         <div className="flex items-center">
           {/* <p className="block p-3">About</p>
             <p className="block p-3">DSC - HCMUIT</p> */}
         </div>
+
         <div className="flex items-center">
           {!user &&
             <BtnRegisterLogin match_path={"user"} />
@@ -134,7 +138,10 @@ function NewsFeedPage(props) {
             {/*  */}
             <div className="-mx-8 w-4/12 hidden lg:block">
               <div className="px-8">
-                <h1 className="mb-4 text-xl font-bold text-gray-700">Hot Topic</h1>
+                <div className="text-center rounded-none">
+                  <input className="text-center text-2xl font-bold focus:outline-none" type="text" placeholder="Search?"></input>
+                </div>
+                <h1 className="mb-4 text-xl font-bold text-gray-700 ml-8 my-4">Hot Frientor</h1>
                 <div className="flex flex-col bg-white max-w-sm px-6 py-4 mx-auto rounded-lg shadow-md">
                   <ul className="-mx-4">
                     <li className="flex items-center"><img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=731&q=80" alt="avatar" className="w-10 h-10 object-cover rounded-full mx-4" />
@@ -158,7 +165,7 @@ function NewsFeedPage(props) {
                 </div>
               </div>
               <div className="mt-10 px-8">
-                <h1 className="mb-4 text-xl font-bold text-gray-700">Categories</h1>
+                <h1 className="mb-4 text-xl font-bold text-gray-700 ml-8">Categories</h1>
                 <div className="flex flex-col bg-white px-4 py-6 max-w-sm mx-auto rounded-lg shadow-md">
                   <ul>
                     <li><a href="#" className="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">-
@@ -177,7 +184,7 @@ function NewsFeedPage(props) {
                 </div>
               </div>
               <div className="mt-10 px-8">
-                <h1 className="mb-4 text-xl font-bold text-gray-700">Recent Post</h1>
+                <h1 className="mb-4 text-xl font-bold text-gray-700 ml-8">Recent Post</h1>
                 <div className="flex flex-col bg-white px-8 py-6 max-w-sm mx-auto rounded-lg shadow-md">
                   <div className="flex justify-center items-center"><a href="#" className="px-2 py-1 bg-gray-600 text-sm text-green-100 rounded hover:bg-gray-500">Laravel</a>
                   </div>
@@ -191,11 +198,11 @@ function NewsFeedPage(props) {
             </div>
 
             <div className="w-full lg:w-8/12">
-              <textarea id="inputQuestion" defaultValue={q} className="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline"></textarea>
-              <button onClick={handleSearch} className="mb-1 mr-2 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+              <textarea id="inputQuestion" placeholder="Write down your question here" defaultValue={q} className="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline .border-dotted"></textarea>
+              {/* <button onClick={handleSearch} className="mb-1 mr-2 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                 Search
-              </button>
-              <button onClick={handleQuest} className=" bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 border-b-4 border-yellow-700 hover:border-yellow-500 rounded">
+              </button> */}
+              <button onClick={handleQuest} className=" bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
                 Post Question
               </button>
               <hr />

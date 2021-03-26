@@ -30,7 +30,7 @@ export default function HomePage() {
     <div>
       <div>
         {/* navbar */}
-        <div className="flex justify-between text-sm text-gray-700">
+        <div className="flex justify-between text-sm text-gray-700 font-bold">
           <div className="flex items-center">
             {/* <p className="block p-3">About</p>
             <p className="block p-3">DSC - HCMUIT</p> */}
@@ -61,21 +61,19 @@ export default function HomePage() {
         <div className="flex justify-center pt-20">
           <div>
             <img alt="frientor"
-              className="w-2/3 ml-auto mr-auto mb-6"
+              className="w-2/3 ml-auto mr-auto mb-6 my-6 cursor-pointer"
               src={frientorPNG}
             />
-            <div className="flex border border-gray-200 rounded-full p-4 shadow text-xl">
+            <div className="flex border border-gray-200 rounded-full p-4 shadow text-xl focus:outline-none">
               <div>🔎</div>
-              <input onKeyPress={handleKeypress.bind(this)} type="text" id="searchContent" className="w-full outline-none px-3" />
+              <input onKeyPress={handleKeypress.bind(this)} type="text" id="searchContent" className="w-full outline-none px-3 font-bold focus:outline-none" placeholder="What are you searching for?" />
               {/* <div>🎤</div> */}
             </div>
             <div className="mt-8 text-center">
-              <button onClick={handleSearch} className="mr-3 bg-gray-200 border border-gray-300 py-3 px-4 rounded hover:bg-gray-400 hover:border-gray-500">
+              <button onClick={handleSearch} className="items-center bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                 Go!
               </button>
-              {/* <button className="bg-gray-200 border border-gray-300 py-3 px-4 rounded hover:bg-gray-400 hover:border-gray-500">
-                I'm Feeling Lucky
-              </button> */}
+
             </div>
           </div>
         </div>
