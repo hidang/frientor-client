@@ -3,7 +3,7 @@ import { auth } from './../../../Auth/firebase';
 import { Axios } from './../../../api/axios';
 import ChithubItem from './ChithubItem';
 
-function Chithub({ idComment }) {
+function Chithub({ idComment, handleSetChatContent }) {
   //const [refresh, setRefresh] = useState({});
   //------------------------------------------------------------
   const [chithubs, setChithubs] = useState([]);
@@ -53,20 +53,19 @@ function Chithub({ idComment }) {
   //   handleGetChats();
   // }, [idComment]);
   //-------------------------------------------------------------
-  const handlePickChat = async () => {
-    console.log(idComment);
+  const handlePickChat = async (_id) => {
     if (!user) alert("Bạn chưa login");
     else {
       const token = await user.getIdToken();
       Axios.get(
-        `/chat/${idComment}`,
+        `/chat/content/${_id}`,
         {
           headers: {
             Authorization: token,
           },
         }
-      ).then((data) => {
-        console.log(data)
+      ).then((data) => {//FIXME:
+        handleSetChatContent(data.data);
       });
     };
   }

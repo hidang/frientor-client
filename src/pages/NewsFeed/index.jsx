@@ -199,10 +199,10 @@ function NewsFeedPage(props) {
 
             <div className="w-full lg:w-8/12">
               <textarea id="inputQuestion" placeholder="Write down your question here" defaultValue={q} className="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline .border-dotted"></textarea>
-              {/* <button onClick={handleSearch} className="mb-1 mr-2 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+              <button onClick={handleSearch} className="mb-1 mr-2 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                 Search
-              </button> */}
-              <button onClick={handleQuest} className=" bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded float-right">
+              </button>
+              <button onClick={handleQuest} className=" bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 border-b-4 border-yellow-700 hover:border-yellow-500 rounded float-right">
                 Post Question
               </button>
               <hr />
