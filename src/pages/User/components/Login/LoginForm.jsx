@@ -82,14 +82,16 @@ function LoginForm() {
             <span className="ml-2">I want to remember you ?</span>
           </label> */}
               <div className="block md:flex items-center justify-center">
-                <button type="submit" className="min-w-full align-middle bg-blue-500 hover:bg-blue-600 text-center px-4 py-2 text-white text-sm font-semibold rounded-lg inline-block shadow-lg">LOGIN</button>
+                <button type="submit" className="min-w-full align-middle bg-blue-500 hover:bg-blue-600 text-center px-4 py-2 text-white text-sm font-semibold rounded-lg inline-block shadow-lg">Login</button>
                 {/* <a className="text-gray-600 hover:text-gray-700 no-underline block mt-3" href="/password/reset">
               Forgot Your Password?
             </a> */}
               </div>
             </form>
             {/* sign with 3th service */}
-            <button onClick={signInWithGoogle} className="mt-2 min-w-full align-middle bg-red-500 hover:bg-red-600 text-center px-4 py-2 text-white text-sm font-semibold rounded-lg inline-block shadow-lg">Login with Google</button>
+            <button onClick={signInWithGoogle} className="mt-2 min-w-full align-middle bg-red-500 hover:bg-red-600 text-center px-4 py-2 text-white text-sm font-semibold rounded-lg inline-block shadow-lg">
+              <i className="mr-2 fab fa-google"></i>Login with Google
+              </button>
           </div>
         </div>
       </div>

@@ -61,6 +61,8 @@ function ChatPage(props) {
   //----------------------------------------------------------
   //const [chithub, setChithub] = useState(null);
   const handleChithubEvent = () => {
+    console.log('alo')
+    //window.location.reload();
     setRefresh({});
   }
 
@@ -113,7 +115,7 @@ function ChatPage(props) {
             <svg className="flex-none w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
           </div>
           <div className="bg-red-300"><center>Idea</center></div>
-          <Idea idQuestion={idq} handleClickIdea={handleClickIdea} />
+          <Idea idQuestion={idq} handleClickIdea={handleClickIdea} triggerRefreshChat={handleChithubEvent} />
         </div>
         <div className="flex flex-row flex-auto bg-white rounded-tl-xl border-l shadow-xl">
           {/*  */}
@@ -124,7 +126,7 @@ function ChatPage(props) {
               <center><p className="">Chithub</p></center>
             </div>
             <div className="flex-auto overflow-y-auto">
-              <Chithub idComment={idComment} handleSetChatContent={handleSetChatContent} />
+              <Chithub idComment={idComment} handleSetChatContent={handleSetChatContent} triggerNe={refresh} />
             </div>
           </div>
           {/*  */}

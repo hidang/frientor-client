@@ -40,7 +40,7 @@ function QuestionItem({ questionItem }) {
   }
   return (
     <div className="mt-6">
-      <div className="max-w-4xl px-10 py-6 bg-white rounded-lg shadow-md">
+      <div className=" px-10 py-6 bg-white rounded-lg shadow-md">
         <div className="flex justify-between items-center">
           <input type="button" className="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" defaultValue="99 ❤" />
           <span className="font-light text-gray-600">

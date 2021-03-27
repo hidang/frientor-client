@@ -73,7 +73,7 @@ export default function HomePage() {
               {/* <div>🎤</div> */}
             </div>
             <div className="mt-8 text-center">
-              <button onClick={handleSearch} className="items-center bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+              <button onClick={handleSearch} className="items-center bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-blue-700 hover:border-blue-500 rounded">
                 Go!
               </button>
 

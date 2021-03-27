@@ -3,7 +3,7 @@ import { auth } from './../../../Auth/firebase';
 import { Axios } from './../../../api/axios';
 import ChithubItem from './ChithubItem';
 
-function Chithub({ idComment, handleSetChatContent }) {
+function Chithub({ idComment, handleSetChatContent, triggerNe }) {
   //const [refresh, setRefresh] = useState({});
   //------------------------------------------------------------
   const [chithubs, setChithubs] = useState([]);
@@ -30,7 +30,7 @@ function Chithub({ idComment, handleSetChatContent }) {
         //get chat for guest
       };
     })
-  }, [idComment]);
+  }, [idComment, triggerNe]);
   //-------------------------------------------------------------
   // const [chats, setChats] = useState(null);
   // const handleGetChats = async () => {

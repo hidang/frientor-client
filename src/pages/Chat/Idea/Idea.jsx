@@ -4,7 +4,7 @@ import { Axios } from '../../../api/axios';
 import IdeaBox from '../IdeaBox/IdeaBox';
 import CommentBox from '../../Question/components/CommentBox/CommentBox';
 
-function Idea({ idQuestion, handleClickIdea }) {
+function Idea({ idQuestion, handleClickIdea, triggerRefreshChat }) {
   //---------------get comment---------------------------------------
   const [commentItems, setCommentItems] = useState(() => {
     Axios.get(`/question/comment/${idQuestion}`)
@@ -32,14 +32,17 @@ function Idea({ idQuestion, handleClickIdea }) {
   });
   //handle show BoxAdd
   const [showBox, setShowBox] = useState(false);
-
+  //--------------------------------------------------
+  const _triggerRefreshChat = () => {
+    triggerRefreshChat();
+  }
   return (
     <>
       <input type="button" onClick={() => { setShowBox(!showBox) }} className="ml-2 bg-white text-gray-700 font-medium px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" defaultValue="+" />
       {showBox && <CommentBox questionId={idQuestion} commentId={false} />}
 
       {commentItems?.map((commentItem) => (
-        <IdeaBox key={commentItem._id} commentItem={commentItem} handleClickIdea={handleClickIdea} />
+        <IdeaBox key={commentItem._id} commentItem={commentItem} handleClickIdea={handleClickIdea} triggerRefreshChat={_triggerRefreshChat} />
       ))}
     </>
   );
