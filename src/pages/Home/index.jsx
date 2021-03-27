@@ -32,7 +32,7 @@ export default function HomePage() {
         {/* navbar */}
         <div className="flex justify-between text-sm text-gray-700 font-bold">
           <div>
-            <h2 className="text-gray-500 font-svn-inter text-2xl ml-4 cursor-pointer my-3 ml-20">HOME</h2>
+            {/* <h2 className="text-gray-500 font-svn-inter text-2xl ml-4 cursor-pointer my-3">HOME</h2> */}
           </div>
           <div className="flex items-center">
             {/* <p className="block p-3">About</p>

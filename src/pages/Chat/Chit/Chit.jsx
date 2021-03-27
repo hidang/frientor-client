@@ -4,7 +4,9 @@ import { Axios } from '../../../api/axios';
 import ChitRight from './ChitRight';
 import ChitLeft from './ChitLeft';
 
-function Chit({ chatContent }) {
+function Chit({ _chatContent }) {
+  const [chatContent, setChatContent] = useState(_chatContent);
+  //------------------------------------------------------
   //check user login?
   const [userLogin, setUserLogin] = useState(true);
   useEffect(() => {
@@ -15,7 +17,66 @@ function Chit({ chatContent }) {
     })
   });
   //-----------------------------------------------------
+  useEffect(() => {
+    auth.onAuthStateChanged(async (_user) => {
+      if (_user) {
+        if (userLogin !== _user)
+          setUserLogin(_user);
+        //get chat for userLogin
+        const token = await _user.getIdToken();
+        Axios.get(
+          `/chat/content/${_chatContent?._id}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        ).then((data) => {
+          setChatContent(data.data);
+        });
+      } else {
+        setUserLogin(false)
+        //get chat for guest
+      };
+    })
+  }, [_chatContent, userLogin])
+
+  //-----------------------------------------------------
+  //check new chatcontent
+  //get chat by _id
+  //check user login? and get data Chats of User in this comment
+  useEffect(() => {
+    const interval = setInterval(() => {
+      auth.onAuthStateChanged(async (_user) => {
+        if (_user) {
+          if (userLogin !== _user)
+            setUserLogin(_user);
+          //get chat for userLogin
+          const token = await _user.getIdToken();
+          Axios.get(
+            `/chat/content/${_chatContent?._id}`,
+            {
+              headers: {
+                Authorization: token,
+              },
+            }
+          ).then((data) => {
+            if (data.data.content.length !== chatContent.content.length)
+              setChatContent(data.data);
+          });
+        } else {
+          setUserLogin(false)
+          //get chat for guest
+        };
+      })
+    }, 1500);
+    return () => clearInterval(interval);
+  });
+  //------------------------------------------------------
+
   const [user, setUser] = useState([]);
+  //user[0]: userLogin
+  //user[1]: userChat
   //get infor 2 user chat
   useEffect(() => {
     const _user = [];
@@ -26,7 +87,7 @@ function Chit({ chatContent }) {
         Axios.get(`/user/${chatContent?.uid2}`)
           .then((res) => {
             const user2 = res.data;
-            if (user1._id === userLogin.uid) {
+            if (user1?.uid === userLogin?.uid) {
               _user.push(user1);
               _user.push(user2);
             } else {
@@ -42,6 +103,7 @@ function Chit({ chatContent }) {
       })
   }, [chatContent, userLogin.uid])
   //-----------------------------------------------------
+  //send chat content to server
   const handleSendChatContent = async (e) => {
     const content = document.querySelector("#inputChatContent").value;
     if (content)
@@ -77,7 +139,7 @@ function Chit({ chatContent }) {
       <div className="w-2/5 border-l border-r border-gray-400 flex flex-col">
         <div className="flex-none h-20 flex flex-row justify-between items-center p-5 border-b">
           <div className="flex flex-col space-y-1">
-            <strong>{user[0]?.name}</strong>
+            <strong>{user[1]?.name}</strong>
             <input type="text" placeholder="Add coversation title" className="text-sm outline-none border-b border-dashed text-black placeholder-gray-600" />
           </div>
           <div className="flex flex-row items-center">
@@ -89,8 +151,8 @@ function Chit({ chatContent }) {
         </div>
         <div className="flex-auto overflow-y-auto p-5 space-y-4" style={{ backgroundImage: 'url(https://static.intercomassets.com/ember/assets/images/messenger-backgrounds/background-1-99a36524645be823aabcd0e673cb47f8.png)' }}>
           {chatContent &&
-            chatContent.content.map((c) => (
-              (c.uid === user[0]?.uid) ? <ChitRight key={c._id} content={c} user={user[0]} /> : <ChitLeft key={c._id} content={c} user={user[1]} />
+            chatContent?.content?.map((c) => (
+              (c.uid === userLogin?.uid) ? <ChitRight key={c._id} content={c} user={userLogin} /> : <ChitLeft key={c._id} content={c} user={user[1]} />
             ))
           }
         </div>

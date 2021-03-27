@@ -99,9 +99,10 @@ function NewsFeedPage(props) {
     <div>
       {/* navbar */}
       <div className="flex justify-between text-sm text-gray-700 font-bold">
-        <div>
+        <NavLink to="/" activeClassName="active-menu" exact>
           <h2 className="text-red-500 font-svn-inter font-bold text-6xl ml-4 cursor-pointer my-3 ml-20">Frientor</h2>
-        </div>
+        </NavLink>
+
         <div className="flex items-center">
           {/* <p className="block p-3">About</p>
             <p className="block p-3">DSC - HCMUIT</p> */}

@@ -71,10 +71,15 @@ function ChatPage(props) {
   return (
     <>
       {/* navbar */}
-      <div className="flex justify-between text-sm text-gray-700">
+      <div className="flex justify-between bg-gray-100 text-sm text-gray-700">
         <div className="flex items-center">
           {/* <p className="block p-3">About</p>
             <p className="block p-3">DSC - HCMUIT</p> */}
+
+          <NavLink to="/" activeClassName="active-menu" exact>
+            <h2 className="text-red-500 font-svn-inter font-bold text-4xl ml-4 cursor-pointer">Frientor</h2>
+          </NavLink>
+
         </div>
         <div className="flex items-center">
           {!userLogin &&
@@ -121,7 +126,7 @@ function ChatPage(props) {
             </div>
           </div>
           {/*  */}
-          <Chit chatContent={chatContent} />
+          <Chit _chatContent={chatContent} />
           {/*  */}
           <Branch idComment={idComment} handleChithubEvent={handleChithubEvent} />
         </div>

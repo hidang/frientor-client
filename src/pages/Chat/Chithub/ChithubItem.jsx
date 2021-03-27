@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from './../../../Auth/firebase';
 import { Axios } from './../../../api/axios';
+import { useHistory, useLocation, useRouteMatch } from 'react-router';
 
 function ChithubItem({ chithub, handlePickChat }) {
-  const [userLogin, setUserLogin] = useState(true);
+  //------------------------------------------------------------
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const idq = query.get('idq');
+  //-----------------------------------------------------------
+  const match = useRouteMatch();
+  const history = useHistory();
+  //check chatItem Pick by id form idchat in param
+  const idchat = query.get('idchat');
+  let className = "border-l-2 border-transparent hover:bg-gray-100 p-3 space-y-4";
+  if (idchat === chithub?._id) className = "border-l-2 bg-green-200 border-transparent hover:bg-green-300 p-3 space-y-4";
+  //---------------------------------------------------------
   //check user login?
+  const [userLogin, setUserLogin] = useState(true);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -27,13 +40,16 @@ function ChithubItem({ chithub, handlePickChat }) {
       });
   }, [chithub, userLogin?.uid]);
 
+
   const clickNe = () => {
-    handlePickChat(chithub?._id);
+    handlePickChat(chithub?._id);//FIXME: lần đầu load page
+    history.push(`${match.path}?idq=${idq}&idcomment=${chithub?.commentId}&idchat=${chithub?._id}`);
   }
+
   return (
     <>
-      <p onClick={clickNe} className="block border-b">
-        <div className="border-l-2 border-transparent hover:bg-gray-100 p-3 space-y-4">
+      <p id={chithub?._id} onClick={clickNe} className="block border-b">
+        <div className={className}>
           <div className="flex flex-row items-center space-x-2">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             <strong className="flex-grow text-sm">{user?.name}</strong>
