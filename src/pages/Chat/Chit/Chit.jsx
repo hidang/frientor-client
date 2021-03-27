@@ -61,8 +61,11 @@ function Chit({ _chatContent }) {
               },
             }
           ).then((data) => {
-            if (data.data.content.length !== chatContent.content.length)
+            if (data.data.content.length !== chatContent.content.length) {
+              //const _data = data.data?.content?.reverse();
+              //console.log(_data)
               setChatContent(data.data);
+            }
           });
         } else {
           setUserLogin(false)

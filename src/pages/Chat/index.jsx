@@ -117,6 +117,8 @@ function ChatPage(props) {
         </div>
         <div className="flex flex-row flex-auto bg-white rounded-tl-xl border-l shadow-xl">
           {/*  */}
+          <Branch idComment={idComment} handleChithubEvent={handleChithubEvent} />
+          {/*  */}
           <div className="flex flex-col w-1/5">
             <div className="flex-none h-20 bg-yellow-200">
               <center><p className="">Chithub</p></center>
@@ -127,8 +129,7 @@ function ChatPage(props) {
           </div>
           {/*  */}
           <Chit _chatContent={chatContent} />
-          {/*  */}
-          <Branch idComment={idComment} handleChithubEvent={handleChithubEvent} />
+
         </div>
       </div>
     </>
