@@ -42,7 +42,7 @@ function QuestionItem({ questionItem }) {
     <div className="mt-6">
       <div className=" px-10 py-6 bg-white rounded-lg shadow-md">
         <div className="flex justify-between items-center">
-          <input type="button" className="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" defaultValue="99 ❤" />
+          <input type="button" className="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" defaultValue={Math.floor(Math.random() * 101) + " ❤"} />
           <span className="font-light text-gray-600">
             {converDate(questionItem?.date)}
           </span>
@@ -57,7 +57,7 @@ function QuestionItem({ questionItem }) {
           {/* <p className="mt-2 text-gray-600">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p> */}
         </div>
         <div className="flex justify-between items-center mt-4">
-          <p href="#" className="text-blue-500 hover:underline">Comment</p>
+          <p href="#" className="text-blue-500 hover:underline">{Math.floor(Math.random() * 101)} Comment</p>
           <div>
             <p href="#" className="flex items-center">
               <img src={user?.photoURL || "https://i.pinimg.com/564x/ce/34/25/ce3425a53b03b8eecb176fcc0b4fd44e.jpg"} alt="avatar" className="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" />

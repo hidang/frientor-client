@@ -75,13 +75,9 @@ function ChatPage(props) {
       {/* navbar */}
       <div className="flex justify-between bg-gray-100 text-sm text-gray-700">
         <div className="flex items-center">
-          {/* <p className="block p-3">About</p>
-            <p className="block p-3">DSC - HCMUIT</p> */}
-
           <NavLink to="/" activeClassName="active-menu" exact>
             <h2 className="text-red-500 font-svn-inter font-bold text-4xl ml-4 cursor-pointer">Frientor</h2>
           </NavLink>
-
         </div>
         <div className="flex items-center">
           {!userLogin &&
@@ -97,7 +93,7 @@ function ChatPage(props) {
               <p className="block">
                 <img alt=""
                   className="rounded-full block py-3 px-3"
-                  src={userLogin?.photoURL || null} width="62" height="62"
+                  src={userLogin?.photoURL || "https://i.pinimg.com/564x/ce/34/25/ce3425a53b03b8eecb176fcc0b4fd44e.jpg"} width="62" height="62"
                 />
               </p>
             </>

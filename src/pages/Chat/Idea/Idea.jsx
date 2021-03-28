@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { auth } from '../../../Auth/firebase';
 import { Axios } from '../../../api/axios';
 import IdeaBox from '../IdeaBox/IdeaBox';
 import CommentBox from '../../Question/components/CommentBox/CommentBox';

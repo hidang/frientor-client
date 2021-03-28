@@ -16,7 +16,7 @@ function RigisterForm() {
       })
         .then((res) => {
           if (res) {
-            console.log('saved user', res);
+            //console.log('saved user', res);
           }
           else {
             alert(res);
@@ -61,13 +61,6 @@ function RigisterForm() {
   }
   return (
     <>
-      {/* <input type="email" name="email" id="email" className="focus:border-blue-500 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none" autoComplete="email" required />
-      <input type="password" name="password" id="password" className="focus:border-blue-500 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none" autoComplete="current-password" required /> */}
-      {/* <button type="submit" className="min-w-full align-middle bg-blue-500 hover:bg-blue-600 text-center px-4 py-2 text-white text-sm font-semibold rounded-lg inline-block shadow-lg">RIGISTER</button> */}
-      {/* <button onClick={signInWithGoogle} className="mt-2 min-w-full align-middle bg-red-500 hover:bg-red-600 text-center px-4 py-2 text-white text-sm font-semibold rounded-lg inline-block shadow-lg">Sign with Google</button> */}
-
-      {/* form rigister */}
-      {/* form login */}
       <div className="max-w-md mx-auto">
         <div className="flex justify-center block lg:flex bg-white lg:shadow-lg rounded-lg">
           <div className="w-full px-6 py-16">
@@ -97,7 +90,7 @@ function RigisterForm() {
             </form>
             {/* sign with 3th service */}
             <button onClick={signInWithGoogle} className="mt-2 min-w-full align-middle bg-red-500 hover:bg-red-600 text-center px-4 py-2 text-white text-sm font-semibold rounded-lg inline-block shadow-lg">
-              <i className="mr-2 fab fa-google"></i>Login with Google
+              <i className="mr-2 fab fa-google"></i>Sign with Google
               </button>
           </div>
         </div>

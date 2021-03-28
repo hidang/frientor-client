@@ -51,14 +51,14 @@ function ChithubItem({ chithub, handlePickChat }) {
       <p id={chithub?._id} onClick={clickNe} className="block border-b">
         <div className={className}>
           <div className="flex flex-row items-center space-x-2">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <img alt="" src={user?.photoURL || "https://i.pinimg.com/564x/ce/34/25/ce3425a53b03b8eecb176fcc0b4fd44e.jpg"} className="flex-none rounded-full w-6 h-6" />
             <strong className="flex-grow text-sm">{user?.name}</strong>
             {/* <div className="text-sm text-gray-600">5hr</div> */}
           </div>
-          <div className="flex flex-row items-center space-x-1">
+          {/* <div className="flex flex-row items-center space-x-1">
             <svg className="flex-none w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             <div className="flex-grow truncate text-xs">{chithub?._id}</div>
-          </div>
+          </div> */}
         </div>
       </p>
     </>

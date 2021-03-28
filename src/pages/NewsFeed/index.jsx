@@ -101,17 +101,14 @@ function NewsFeedPage(props) {
   return (
     <div>
       {/* navbar */}
-      <div className="flex justify-between text-sm text-gray-700 font-bold">
-        <NavLink to="/" activeClassName="active-menu" exact>
-          <h2 className="text-red-500 font-svn-inter font-bold text-6xl ml-4 cursor-pointer my-3 ml-20">Frientor</h2>
-        </NavLink>
-
+      <div className="flex flex-wrap justify-between text-sm text-gray-700 font-bold">
         <div className="flex items-center">
-          {/* <p className="block p-3">About</p>
-            <p className="block p-3">DSC - HCMUIT</p> */}
+          <NavLink to="/" activeClassName="active-menu" exact>
+            <h2 className="text-red-500 font-svn-inter font-bold text-6xl ml-4 cursor-pointer my-3 mr-2">Frientor</h2>
+          </NavLink>
         </div>
 
-        <div className="flex items-center">
+        <div className="flex items-center ml-5">
           {!user &&
             <BtnRegisterLogin match_path={"user"} />
           }
@@ -126,7 +123,7 @@ function NewsFeedPage(props) {
               <p className="block">
                 <img alt=""
                   className="rounded-full block py-3 px-3"
-                  src={user?.photoURL || null} width="62" height="62"
+                  src={user?.photoURL || "https://i.pinimg.com/564x/ce/34/25/ce3425a53b03b8eecb176fcc0b4fd44e.jpg"} width="62" height="62"
                 />
               </p>
             </>
@@ -149,60 +146,35 @@ function NewsFeedPage(props) {
                 <div className="flex flex-col bg-white max-w-sm px-6 py-4 mx-auto rounded-lg shadow-md">
                   <ul className="-mx-4">
                     <li className="flex items-center"><img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=731&q=80" alt="avatar" className="w-10 h-10 object-cover rounded-full mx-4" />
-                      <p><a href="#" className="text-gray-700 font-bold mx-1 hover:underline">Nhien Nguyen</a><span className="text-gray-700 text-sm font-light">Created 23 Posts</span></p>
+                      <p>
+                        <p href="#" className="text-gray-700 font-bold mx-1 hover:underline">Nhien Nguyen</p>
+                        <span className="text-gray-700 text-sm font-light">Created {23} Posts</span>
+                      </p>
                     </li>
                     <li className="flex items-center mt-6"><img src="https://images.unsplash.com/photo-1464863979621-258859e62245?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=333&q=80" alt="avatar" className="w-10 h-10 object-cover rounded-full mx-4" />
-                      <p><a href="#" className="text-gray-700 font-bold mx-1 hover:underline">Binh Trong</a><span className="text-gray-700 text-sm font-light">Created 52 Posts</span></p>
+                      <p>
+                        <p href="#" className="text-gray-700 font-bold mx-1 hover:underline">Binh Trong</p>
+                        <span className="text-gray-700 text-sm font-light">Created 52 Posts</span>
+                      </p>
                     </li>
                     <li className="flex items-center mt-6"><img src="https://images.unsplash.com/photo-1531251445707-1f000e1e87d0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=281&q=80" alt="avatar" className="w-10 h-10 object-cover rounded-full mx-4" />
-                      <p><a href="#" className="text-gray-700 font-bold mx-1 hover:underline">Khanh Dang</a><span className="text-gray-700 text-sm font-light">Created 73 Posts</span></p>
+                      <p><p href="#" className="text-gray-700 font-bold mx-1 hover:underline">Khanh Dang</p><span className="text-gray-700 text-sm font-light">Created 73 Posts</span></p>
                     </li>
                     <li className="flex items-center mt-6"><img src="https://images.unsplash.com/photo-1500757810556-5d600d9b737d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=735&q=80" alt="avatar" className="w-10 h-10 object-cover rounded-full mx-4" />
-                      <p><a href="#" className="text-gray-700 font-bold mx-1 hover:underline">Tri Vo</a><span className="text-gray-700 text-sm font-light">Created 245 Posts</span></p>
+                      <p><p href="#" className="text-gray-700 font-bold mx-1 hover:underline">Tri Vo</p><span className="text-gray-700 text-sm font-light">Created 245 Posts</span></p>
                     </li>
                     <li className="flex items-center mt-6"><img src="https://images.unsplash.com/photo-1502980426475-b83966705988?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=373&q=80" alt="avatar" className="w-10 h-10 object-cover rounded-full mx-4" />
-                      <p><a href="#" className="text-gray-700 font-bold mx-1 hover:underline">Tri Dung
-                    </a><span className="text-gray-700 text-sm font-light">Created 332 Posts</span>
+                      <p><p href="#" className="text-gray-700 font-bold mx-1 hover:underline">Tri Dung
+                    </p><span className="text-gray-700 text-sm font-light">Created 332 Posts</span>
                       </p>
                     </li>
                   </ul>
                 </div>
               </div>
-              <div className="mt-10 px-8">
-                <h1 className="mb-4 text-xl font-bold text-gray-700 ml-8">Categories</h1>
-                <div className="flex flex-col bg-white px-4 py-6 max-w-sm mx-auto rounded-lg shadow-md">
-                  <ul>
-                    <li><a href="#" className="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">-
-                  AWS</a></li>
-                    <li className="mt-2"><a href="#" className="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">-
-                  Laravel</a></li>
-                    <li className="mt-2"><a href="#" className="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">- Vue</a>
-                    </li>
-                    <li className="mt-2"><a href="#" className="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">-
-                  Design</a></li>
-                    <li className="flex items-center mt-2"><a href="#" className="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">-
-                  Django</a></li>
-                    <li className="flex items-center mt-2"><a href="#" className="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">- PHP</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="mt-10 px-8">
-                <h1 className="mb-4 text-xl font-bold text-gray-700 ml-8">Recent Post</h1>
-                <div className="flex flex-col bg-white px-8 py-6 max-w-sm mx-auto rounded-lg shadow-md">
-                  <div className="flex justify-center items-center"><a href="#" className="px-2 py-1 bg-gray-600 text-sm text-green-100 rounded hover:bg-gray-500">Laravel</a>
-                  </div>
-                  <div className="mt-4"><a href="#" className="text-lg text-gray-700 font-medium hover:underline">Build
-                Your New Idea with Laravel Freamwork.</a></div>
-                  <div className="flex justify-between items-center mt-4">
-                    <div className="flex items-center"><img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=731&q=80" alt="avatar" className="w-8 h-8 object-cover rounded-full" /><a href="#" className="text-gray-700 text-sm mx-3 hover:underline">Alex John</a></div><span className="font-light text-sm text-gray-600">Jun 1, 2020</span>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className="w-full lg:w-8/12">
-              <div className="flex">
+              <div className="flex flex-wrap">
                 <textarea id="inputQuestion" placeholder="Write down your question here" defaultValue={q} className="mr-5 flex-1 h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline " />
                 <div>
                   <button onClick={handleSearch} className="mb-1 mr-2 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-blue-700 hover:border-blue-500 rounded">

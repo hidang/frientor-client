@@ -7,7 +7,7 @@ import BtnRegisterLogin from "../../components/Navbar/BtnRegisterLogin";
 import CommentList from './components/Comment/CommentList';
 import CommentBox from './components/CommentBox/CommentBox';
 function QuestionPage(props) {
-  const [refresh, setRefresh] = useState({});
+  //const [refresh, setRefresh] = useState({});
   const [questionItem, setQuestionItem] = useState([]);
   const [user, setUser] = useState(null);
   const [showBox, setShowBox] = useState(false);
@@ -46,7 +46,7 @@ function QuestionPage(props) {
       .catch((err) => {
         console.log(err);
       });
-  }, [id, questionItem?.uid, refresh]);
+  }, [id, questionItem?.uid]);
   //-----------------------------------------------------------
   const converDate = (date) => {
     function checkZero(data) {
@@ -79,6 +79,9 @@ function QuestionPage(props) {
       {/* navbar */}
       <div className="flex justify-between text-sm text-gray-700">
         <div className="flex items-center">
+          <NavLink to="/" activeClassName="active-menu" exact>
+            <h2 className="text-red-500 font-svn-inter font-bold text-6xl ml-4 cursor-pointer my-3 mr-2">Frientor</h2>
+          </NavLink>
           {/* <p className="block p-3">About</p>
             <p className="block p-3">DSC - HCMUIT</p> */}
         </div>
@@ -97,7 +100,7 @@ function QuestionPage(props) {
               <p className="block">
                 <img alt=""
                   className="rounded-full block py-3 px-3"
-                  src={userLogin?.photoURL || null} width="62" height="62"
+                  src={userLogin?.photoURL || "https://i.pinimg.com/564x/ce/34/25/ce3425a53b03b8eecb176fcc0b4fd44e.jpg"} width="62" height="62"
                 />
               </p>
             </>
@@ -120,7 +123,7 @@ function QuestionPage(props) {
           </div>
 
           <div className="flex justify-between items-center mt-4">
-            <p className="text-blue-500 ml--2 inline-block">99 Comments</p>
+            <p className="text-blue-500 ml--2 inline-block">{Math.floor(Math.random() * 101)} Comments</p>
             <div className="font-light text-gray-600 ml-4">
               {converDate(questionItem?.date)}
             </div>

@@ -30,15 +30,14 @@ export default function HomePage() {
     <div>
       <div>
         {/* navbar */}
-        <div className="flex justify-between text-sm text-gray-700 font-bold">
-          <div>
-            {/* <h2 className="text-gray-500 font-svn-inter text-2xl ml-4 cursor-pointer my-3">HOME</h2> */}
-          </div>
+        <div className="flex flex-wrap justify-between text-sm text-gray-500 font-bold">
           <div className="flex items-center">
-            {/* <p className="block p-3">About</p>
-            <p className="block p-3">DSC - HCMUIT</p> */}
+            <NavLink to="search?q=" activeClassName="active-menu" exact>
+              <p className="block p-3 text-xl">Frientor Now</p>
+            </NavLink>
+            {/* <p className="block p-3">DSC - HCMUIT</p> */}
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center ml-3">
             {!user &&
               <BtnRegisterLogin match_path={"user"} />
             }
@@ -68,9 +67,7 @@ export default function HomePage() {
               src={frientorPNG}
             />
             <div className="flex border border-gray-200 rounded-full p-4 shadow text-xl focus:outline-none">
-              <div></div>
               <input onKeyPress={handleKeypress.bind(this)} type="text" id="searchContent" className="w-full outline-none px-3 font-bold focus:outline-none" placeholder="What are you searching for?" />
-              {/* <div>🎤</div> */}
             </div>
             <div className="mt-8 text-center">
               <button onClick={handleSearch} className="items-center bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-blue-700 hover:border-blue-500 rounded">

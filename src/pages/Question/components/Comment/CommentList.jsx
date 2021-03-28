@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { auth } from '../../../../Auth/firebase';
 import { Axios } from '../../../../api/axios';
 import CommentItem from './../CommentItem/CommentItem';
 function CommentList({ questionId }) {
-  const [refresh, setRefresh] = useState({});
+  //const [refresh, setRefresh] = useState({});
   const [commentItems, setCommentItems] = useState();
   //get Comment
   useEffect(() => {

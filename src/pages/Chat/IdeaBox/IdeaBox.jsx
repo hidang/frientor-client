@@ -36,6 +36,10 @@ function IdeaBox({ commentItem, handleClickIdea, triggerRefreshChat }) {
   });
   //-------------------------------------------------------------
   const handleClickChat = async () => {
+    if (!userLogin) {
+      alert('You are not Login');
+      return;
+    }
     //post create chat
     const token = await userLogin.getIdToken();
     Axios.post(

@@ -25,6 +25,10 @@ function BranchItem({ idComment, repComment, triggerRefreshChat }) {
   })
   //--------------------------------------------------
   const handleClickChat = async () => {
+    if (!userLogin) {
+      alert('You are not Login');
+      return;
+    }
     //post create chat
     const token = await userLogin.getIdToken();
     Axios.post(

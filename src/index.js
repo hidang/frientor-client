@@ -6,7 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    {/* Set basename to deploy page on github-page */}
+    <BrowserRouter basename="/frientor-client">
       <App />
     </BrowserRouter>
   </React.StrictMode>,

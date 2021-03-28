@@ -18,7 +18,7 @@ function LoginForm() {
       })
         .then((res) => {
           if (res) {
-            console.log('saved user', res);
+            //console.log('saved user', res);
           }
           else {
             alert(res);
@@ -33,7 +33,7 @@ function LoginForm() {
     e.preventDefault();
     const email = e.target.querySelector("#email").value;
     const password = e.target.querySelector("#password").value;
-    const user = await auth.signInWithEmailAndPassword(email, password).then((data) => {
+    await auth.signInWithEmailAndPassword(email, password).then((data) => {
       return data.user.getIdToken();
     })
       .then((token) => {
