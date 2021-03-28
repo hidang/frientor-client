@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/frientor-client/static/css/main.5b1110af.chunk.css",
+    "main.js": "/frientor-client/static/js/main.83cb7014.chunk.js",
+    "main.js.map": "/frientor-client/static/js/main.83cb7014.chunk.js.map",
+    "runtime-main.js": "/frientor-client/static/js/runtime-main.a0c3aa2b.js",
+    "runtime-main.js.map": "/frientor-client/static/js/runtime-main.a0c3aa2b.js.map",
+    "static/js/2.2ba13e7d.chunk.js": "/frientor-client/static/js/2.2ba13e7d.chunk.js",
+    "static/js/2.2ba13e7d.chunk.js.map": "/frientor-client/static/js/2.2ba13e7d.chunk.js.map",
+    "static/js/3.232dd9ad.chunk.js": "/frientor-client/static/js/3.232dd9ad.chunk.js",
+    "static/js/3.232dd9ad.chunk.js.map": "/frientor-client/static/js/3.232dd9ad.chunk.js.map",
+    "index.html": "/frientor-client/index.html",
+    "static/css/main.5b1110af.chunk.css.map": "/frientor-client/static/css/main.5b1110af.chunk.css.map",
+    "static/js/2.2ba13e7d.chunk.js.LICENSE.txt": "/frientor-client/static/js/2.2ba13e7d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a0c3aa2b.js",
+    "static/js/2.2ba13e7d.chunk.js",
+    "static/css/main.5b1110af.chunk.css",
+    "static/js/main.83cb7014.chunk.js"
+  ]
+}
