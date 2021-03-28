@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const Axios = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://frientor-server.herokuapp.com/",
   headers: {
     "content-type": "application/json",
   },
