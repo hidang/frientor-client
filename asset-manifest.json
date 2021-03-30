@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/frientor-client/static/css/main.19cc3324.chunk.css",
-    "main.js": "/frientor-client/static/js/main.fe87b8cd.chunk.js",
-    "main.js.map": "/frientor-client/static/js/main.fe87b8cd.chunk.js.map",
+    "main.js": "/frientor-client/static/js/main.381f39fc.chunk.js",
+    "main.js.map": "/frientor-client/static/js/main.381f39fc.chunk.js.map",
     "runtime-main.js": "/frientor-client/static/js/runtime-main.68f026fe.js",
     "runtime-main.js.map": "/frientor-client/static/js/runtime-main.68f026fe.js.map",
     "static/js/2.4756a8c9.chunk.js": "/frientor-client/static/js/2.4756a8c9.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.68f026fe.js",
     "static/js/2.4756a8c9.chunk.js",
     "static/css/main.19cc3324.chunk.css",
-    "static/js/main.fe87b8cd.chunk.js"
+    "static/js/main.381f39fc.chunk.js"
   ]
 }
