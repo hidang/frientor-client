@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/frientor-client/static/css/main.f6bdd2c1.chunk.css",
-    "main.js": "/frientor-client/static/js/main.51bb599a.chunk.js",
-    "main.js.map": "/frientor-client/static/js/main.51bb599a.chunk.js.map",
+    "main.css": "/frientor-client/static/css/main.19cc3324.chunk.css",
+    "main.js": "/frientor-client/static/js/main.fe87b8cd.chunk.js",
+    "main.js.map": "/frientor-client/static/js/main.fe87b8cd.chunk.js.map",
     "runtime-main.js": "/frientor-client/static/js/runtime-main.68f026fe.js",
     "runtime-main.js.map": "/frientor-client/static/js/runtime-main.68f026fe.js.map",
-    "static/js/2.7d32b653.chunk.js": "/frientor-client/static/js/2.7d32b653.chunk.js",
-    "static/js/2.7d32b653.chunk.js.map": "/frientor-client/static/js/2.7d32b653.chunk.js.map",
+    "static/js/2.4756a8c9.chunk.js": "/frientor-client/static/js/2.4756a8c9.chunk.js",
+    "static/js/2.4756a8c9.chunk.js.map": "/frientor-client/static/js/2.4756a8c9.chunk.js.map",
     "static/js/3.a85bcced.chunk.js": "/frientor-client/static/js/3.a85bcced.chunk.js",
     "static/js/3.a85bcced.chunk.js.map": "/frientor-client/static/js/3.a85bcced.chunk.js.map",
     "index.html": "/frientor-client/index.html",
-    "static/css/main.f6bdd2c1.chunk.css.map": "/frientor-client/static/css/main.f6bdd2c1.chunk.css.map",
-    "static/js/2.7d32b653.chunk.js.LICENSE.txt": "/frientor-client/static/js/2.7d32b653.chunk.js.LICENSE.txt"
+    "static/css/main.19cc3324.chunk.css.map": "/frientor-client/static/css/main.19cc3324.chunk.css.map",
+    "static/js/2.4756a8c9.chunk.js.LICENSE.txt": "/frientor-client/static/js/2.4756a8c9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.68f026fe.js",
-    "static/js/2.7d32b653.chunk.js",
-    "static/css/main.f6bdd2c1.chunk.css",
-    "static/js/main.51bb599a.chunk.js"
+    "static/js/2.4756a8c9.chunk.js",
+    "static/css/main.19cc3324.chunk.css",
+    "static/js/main.fe87b8cd.chunk.js"
   ]
 }
