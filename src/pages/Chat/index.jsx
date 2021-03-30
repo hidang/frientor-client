@@ -105,12 +105,12 @@ function ChatPage(props) {
       {/* body */}
       <div className="flex flex-row h-screen bg-gray-100">
         <div className="w-64 flex-none bg-gray-100 p-4 flex flex-col space-y-4">
-          <div className="bg-red-300"><center>Question</center></div>
+          <div className="bg-red-300"><center><b>Question</b></center></div>
           <div className="flex flex-row justify-between items-center mb-6">
             <h1 className="font-semibold text-xs">{questionItem?.content} - {user?.name}</h1>
             <svg className="flex-none w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
           </div>
-          <div className="bg-red-300"><center>Idea</center></div>
+          <div className="bg-red-300"><center><b>Idea</b></center></div>
           <Idea idQuestion={idq} handleClickIdea={handleClickIdea} triggerRefreshChat={handleChithubEvent} />
         </div>
         <div className="flex flex-row flex-auto bg-white rounded-tl-xl border-l shadow-xl">
@@ -119,7 +119,7 @@ function ChatPage(props) {
           {/*  */}
           <div className="flex flex-col w-1/5">
             <div className="flex-none h-20 bg-yellow-200">
-              <center><p className="">Chithub</p></center>
+              <center> <p className="mt-6"><b>Chithub</b></p></center>
             </div>
             <div className="flex-auto overflow-y-auto">
               <Chithub idComment={idComment} handleSetChatContent={handleSetChatContent} triggerNe={refresh} />

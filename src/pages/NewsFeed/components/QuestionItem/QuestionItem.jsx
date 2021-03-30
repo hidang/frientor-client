@@ -51,13 +51,13 @@ function QuestionItem({ questionItem }) {
           </p> */}
         </div>
         <div className="mt-2">
-          <p href="#" onClick={() => { history.push(`/question?id=${questionItem?._id}`) }} className=" text-gray-700 font-bold hover:underline">
+          <p href="#" onClick={() => { history.push(`/question?id=${questionItem?._id}`) }} className=" text-gray-700 font-bold hover:underline cursor-pointer">
             {questionItem?.content}
           </p>
           {/* <p className="mt-2 text-gray-600">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p> */}
         </div>
         <div className="flex justify-between items-center mt-4">
-          <p href="#" className="text-blue-500 hover:underline">{Math.floor(Math.random() * 101)} Comment</p>
+          <p href="#" className="text-blue-500">{Math.floor(Math.random() * 101)} Idea</p>
           <div>
             <p href="#" className="flex items-center">
               <img src={user?.photoURL || "https://i.pinimg.com/564x/ce/34/25/ce3425a53b03b8eecb176fcc0b4fd44e.jpg"} alt="avatar" className="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" />

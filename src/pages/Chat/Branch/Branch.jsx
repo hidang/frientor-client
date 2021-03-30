@@ -47,7 +47,7 @@ function Branch({ idComment, handleChithubEvent }) {
     <>
       <div className="w-2/5 bg-gray-200 overflow-y-auto flex flex-col">
         <div className="flex flex-col space-y-4 p-4">
-          <div className="bg-green-300" ><center>Branch (RepComment)</center></div>
+          <div className="bg-green-300" ><center><b>Branch (RepIdea)</b></center></div>
           <input type="button" onClick={() => { setShowBox(!showBox) }} className="ml-2 bg-white text-gray-700 font-medium px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" defaultValue="+" />
           {showBox && <CommentBox questionId={false} commentId={idComment} />}
           {

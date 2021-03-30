@@ -143,11 +143,16 @@ function Chit({ _chatContent }) {
         <div className="flex-none h-20 flex flex-row justify-between items-center p-5 border-b">
           <div className="flex flex-col space-y-1">
             <strong>{user[1]?.name}</strong>
-            <input type="text" placeholder="Add coversation title" className="text-sm outline-none border-b border-dashed text-black placeholder-gray-600" />
+
+            {/* <input type="text" placeholder="Add coversation title" className="text-sm outline-none border-b border-dashed text-black placeholder-gray-600" /> */}
+
+            <label class="inline-flex items-center mt-3">
+              <input onClick={() => { alert('Sorry, Coming soon...') }} type="checkbox" class="form-checkbox h-5 w-5 text-green-600" checked /><span class="ml-2 text-gray-700">Private</span>
+            </label>
           </div>
           <div className="flex flex-row items-center">
-            <p onClick={() => { alert('Coming soon :((') }} className="fas fa-phone mr-4"></p>
-            <p onClick={() => { alert('Coming soon :((') }} className="fas fa-video"></p>
+            <p onClick={() => { alert('Sorry, Coming soon...') }} className="fas fa-phone mr-4"></p>
+            <p onClick={() => { alert('Sorry, Coming soon...') }} className="fas fa-video"></p>
           </div>
         </div>
         <div className="flex-auto overflow-y-auto p-5 space-y-4" style={{ backgroundImage: 'url(https://static.intercomassets.com/ember/assets/images/messenger-backgrounds/background-1-99a36524645be823aabcd0e673cb47f8.png)' }}>

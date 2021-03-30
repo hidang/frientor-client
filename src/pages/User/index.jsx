@@ -70,8 +70,8 @@ function UserPage() {
               <img src={userData?.photoURL || "https://i.pinimg.com/564x/ce/34/25/ce3425a53b03b8eecb176fcc0b4fd44e.jpg"} width="96" height="96" alt="avatar" className="rounded-full border-solid border-white border-2 -mt-3" />
             </div>
             <div className="text-center px-3 pb-6 pt-2">
-              <h3 className="text-black text-sm bold font-sans">{userData?.name}</h3>
-              <p className="mt-2 font-sans font-light text-grey-dark">Hello, i'm from another the other side!</p>
+              <h3 className="text-black text-sm bold font-sans">{userData?.name} <i className="fas fa-edit ml-1"></i></h3>
+              <p className="mt-2 font-sans font-light text-grey-dark">{userData?.bio}</p>
             </div>
             <div className="flex justify-center pb-3 text-grey-dark">
               <div className="text-center mr-3 border-r pr-3">
