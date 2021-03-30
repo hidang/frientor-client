@@ -123,7 +123,7 @@ function QuestionPage(props) {
           </div>
 
           <div className="flex justify-between items-center mt-4">
-            <p className="text-blue-500 ml--2 inline-block">{Math.floor(Math.random() * 101)} Comments</p>
+            <p className="text-blue-500 ml--2 inline-block">{Math.floor(Math.random() * 101)} Ideas</p>
             <div className="font-light text-gray-600 ml-4">
               {converDate(questionItem?.date)}
             </div>

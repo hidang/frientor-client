@@ -7,8 +7,8 @@ function IdeaBox({ commentItem, handleClickIdea, triggerRefreshChat }) {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const idcmt = query.get('idcomment');
-  let className = "bg-blue-200 h-20";
-  if (idcmt === commentItem?._id) className = "bg-blue-400 h-20 border-2 border-black border-opacity-1000";
+  let className = "bg-blue-200";
+  if (idcmt === commentItem?._id) className = "bg-blue-400 border-2 border-black border-opacity-1000";
   const handleClickNe = () => {
     handleClickIdea(commentItem?._id);
   }
