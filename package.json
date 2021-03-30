@@ -1,5 +1,4 @@
 {
-  "homepage": "https://hidang.github.io/frientor-client",
   "name": "frientor-client",
   "version": "0.1.0",
   "private": true,
@@ -25,9 +24,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
-    "deploy": "gh-pages -b page -d build",
-    "eject": "react-scripts eject"
+    "test": "craco test"
   },
   "eslintConfig": {
     "extends": [
